@@ -1,19 +1,30 @@
-import logo from './logo.svg';
+import { Route, NavLink, Redirect } from 'react-router-dom';
+
+import Login from './components/Login/Login';
+import Signup from './components/Signup/Signup';
+import Dashboard from './components/Dashboard/Dashboard';
+import { getToken } from './contexts/API';
 import './App.css';
-import TestComponent from './components/TestComponent';
+
+
+//const token = localStorage.getItem("token");
+//localStorage.clear();
 
 function App() {
     return (
         <div className="App">
-            {/* <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p> zaiblitz.tech </p>
-                <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer" > 
-                    Learn React 
-                </a>
-            </header> */}
+            <header>
+                <nav>
+                    <ul>
+                        <li><NavLink to="/signin">Sign In</NavLink></li>
+                        <li><NavLink to="/signup">Sign Up</NavLink></li>
+                    </ul>
+                </nav>
+            </header>
 
-            <TestComponent name="Merwin Dale" />
+            {getToken() ? <Route path="/" component={Dashboard} /> : <Redirect from="/" to="/signin" />}
+            <Route path="/signin" component={Login} />
+            <Route path="/signup" component={Signup} />
         </div>
     );
 }

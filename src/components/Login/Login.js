@@ -17,6 +17,8 @@ import { useHistory } from "react-router";
 import axios from 'axios';
 import { API_URL } from '../../contexts/API';
 
+localStorage.clear(); // to update
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -72,8 +74,11 @@ export default function SignIn() {
             history.push({ pathname:  "/", });
         } else {
             // this.setState({ hasError: true });
+            alert('error');
             console.log('has error');
         }
+    }).catch((error)=> {
+        alert(error);
     });
 
  }
@@ -94,7 +99,6 @@ export default function SignIn() {
             margin="normal"
             required
             fullWidth
-            id="email"
             label="Email Address"
             name="email"
             autoComplete="email"

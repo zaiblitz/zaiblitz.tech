@@ -1,19 +1,14 @@
-import { Route, NavLink, Redirect } from 'react-router-dom';
+import { Route, NavLink } from 'react-router-dom';
 
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import Dashboard from './components/Dashboard/Dashboard';
-import { getToken } from './contexts/API';
 import './App.css';
-
-
-//const token = localStorage.getItem("token");
-//localStorage.clear();
 
 function App() {
     return (
         <div className="App">
-            <header>
+            <header style={{display:"none"}}>
                 <nav>
                     <ul>
                         <li><NavLink to="/signin">Sign In</NavLink></li>
@@ -22,7 +17,9 @@ function App() {
                 </nav>
             </header>
 
-            {getToken() ? <Route path="/" component={Dashboard} /> : <Redirect from="/" to="/signin" />}
+            {/* {getToken() ? <Route path="/" component={Dashboard} /> : <Redirect from="/" to="/signin" />} */}
+
+            <Route exact path='/' component={Dashboard} />
             <Route path="/signin" component={Login} />
             <Route path="/signup" component={Signup} />
         </div>

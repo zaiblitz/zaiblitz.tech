@@ -76,7 +76,7 @@ export default function SignIn() {
             console.log('has error');
         }
     }).catch((error)=> {
-        alert(error);
+        alert('Invalid username or password');
     });
 
  }
@@ -97,9 +97,9 @@ export default function SignIn() {
             margin="normal"
             required
             fullWidth
-            label="Email Address"
-            name="email"
-            autoComplete="email"
+            label="Username"
+            name="username"
+            autoComplete="username"
             autoFocus
             onChange={(event) => setUsername(event.target.value)}
           />

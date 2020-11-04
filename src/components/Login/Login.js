@@ -17,8 +17,6 @@ import { useHistory } from "react-router";
 import axios from 'axios';
 import { API_URL } from '../../contexts/API';
 
-localStorage.clear(); // to update
-
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">

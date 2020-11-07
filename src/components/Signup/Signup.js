@@ -5,7 +5,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -13,15 +12,14 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
+import { Link } from 'react-router-dom';
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        zaiblitz.tech
-      </Link>{' '}
+        zaiblitz.tech {' '}
       {new Date().getFullYear()}
-      {'.'}
     </Typography>
   );
 }
@@ -44,10 +42,21 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  link: {
+    textDecoration: 'none',
+    color: '#3f51b5',
+    "&:hover, &:focus": {
+      textDecoration: 'underline'
+    },
+  }
 }));
 
 export default function SignUp() {
   const classes = useStyles();
+
+  const signupHandler = (event) => {
+    event.preventDefault();
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -59,7 +68,7 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={signupHandler}> 
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -107,12 +116,6 @@ export default function SignUp() {
                 autoComplete="current-password"
               />
             </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
-              />
-            </Grid>
           </Grid>
           <Button
             type="submit"
@@ -125,7 +128,7 @@ export default function SignUp() {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link to="/signin" variant="body2" className={classes.link}>
                 Already have an account? Sign in
               </Link>
             </Grid>

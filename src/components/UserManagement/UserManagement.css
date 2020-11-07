@@ -1,0 +1,13 @@
+.UserManagement {
+    position: relative;
+    background-color: darkcyan;
+    height:50px;
+}
+
+.UserManagement .title {
+    position: absolute;
+    text-align: center;
+    width: 100%; /* need to add to make it center if position is absolute */
+    padding-top: 15px;
+    font-weight: 400;
+}

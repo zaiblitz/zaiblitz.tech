@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { getToken } from '../../contexts/API';
 import { Redirect } from 'react-router-dom';
 
-import './Dashboard.css';
+import './UserManagement.css';
 
 class Dashboard extends Component {
 

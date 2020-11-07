@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-// import Link from '@material-ui/core/Link';\
+import Alert from '@material-ui/lab/Alert';
 
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -19,15 +19,12 @@ import { useHistory } from "react-router";
 import axios from 'axios';
 import { API_URL } from '../../contexts/API';
 
-function Copyright(classes) {
+function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" to="/signin" className={classes.link}>
-        zaiblitz.tech
-      </Link>{' '}
+        zaiblitz.tech { ' ' }
       {new Date().getFullYear()}
-      {'.'}
     </Typography>
   );
 }
@@ -51,11 +48,11 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
   link: {
-      textDecoration: 'none',
-      color: '#3f51b5',
-      "&:hover, &:focus": {
-          textDecoration: 'underline'
-      },
+    textDecoration: 'none',
+    color: '#3f51b5',
+    "&:hover, &:focus": {
+      textDecoration: 'underline'
+    },
   }
 }));
 
@@ -63,32 +60,42 @@ export default function SignIn() {
 
   const classes = useStyles();
   const history = useHistory();
-  const [ username, setUsername] = useState()
-  const [ password, setPassword] = useState()
+  const [username, setUsername] = useState()
+  const [password, setPassword] = useState()
+
+  const [errorMessage, setErrorMessage] = useState(false);
 
   const signInHandler = (event) => {
     event.preventDefault();
 
-    const params = { 
-        username: username,
-        password: password
+    const params = {
+      username: username,
+      password: password
     };
 
     axios.post(API_URL + 'auth/login', params).then(response => {
-        if(response.status === 200) {
-            localStorage.setItem('token', response.data.token);
-            // this.setState({ hasError: false });
-            history.push({ pathname:  "/", });
-        } else {
-            // this.setState({ hasError: true });
-            alert('error');
-            console.log('has error');
-        }
-    }).catch((error)=> {
-        alert('Invalid username or password');
+      if (response.status === 200) {
+        localStorage.setItem('token', response.data.token);
+        history.push({ pathname: "/", });
+      } else {
+        console.log('has error');
+      }
+    }).catch((error) => {
+      console.log('error ooops');
+      setErrorMessage(true);
     });
+  }
 
- }
+  useEffect(() => {
+    console.log('Component did mount/update');
+    // <Alert severity="error">This is an error alert — check it out!</Alert>
+  });
+
+  useEffect(() => {
+    return () => {
+      console.log('Component did unmount')
+    }
+  },[])
 
   return (
     <Container component="main" maxWidth="xs">
@@ -100,6 +107,7 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
+        {errorMessage}
         <form className={classes.form} noValidate onSubmit={signInHandler}>
           <TextField
             variant="outlined"
@@ -128,6 +136,7 @@ export default function SignIn() {
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
+          {errorMessage ? <Alert severity="error">Username or password is invalid</Alert> : "" }
           <Button
             type="submit"
             fullWidth
@@ -139,7 +148,7 @@ export default function SignIn() {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2" className={classes.link}>
+              <Link to="#" variant="body2" className={classes.link}>
                 Forgot password?
               </Link>
             </Grid>
@@ -152,7 +161,7 @@ export default function SignIn() {
         </form>
       </div>
       <Box mt={8}>
-        <Copyright classes={classes}/>
+        <Copyright/>
       </Box>
     </Container>
   );

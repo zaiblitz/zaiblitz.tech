@@ -76,7 +76,7 @@ export default function SignIn() {
     axios.post(API_URL + 'auth/login', params).then(response => {
       if (response.status === 200) {
         localStorage.setItem('token', response.data.token);
-        history.push({ pathname: "/", });
+        history.push({ pathname: "/dashboard", });
       } else {
         console.log('has error');
       }

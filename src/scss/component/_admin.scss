@@ -1,0 +1,65 @@
+
+/*
+ * Admin
+ */
+
+.md-admin {
+  & {
+    background-color: $color-bg-header;
+    height: 50px;
+    width: 100%;
+    float: left;
+    font-family: $ff-heading;
+  }
+
+  &-header {
+    color: $color-text-header;
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  &-content {
+    margin-top:15px;
+    margin-left: 250px;
+    height: 700px;
+    background: $color-theme;
+  }
+
+  &-list {
+    margin-left:20px;
+    margin-top: 25px;
+  }
+
+  &-sidebar {
+    float:left;
+    width: 250px;
+    background: #1B1C1D;
+    margin-top:15px;
+    height:650px;
+
+    ul {
+      margin-bottom: 0;
+      padding-left: 0;
+      position: absolute;
+
+      li {
+        list-style: none;
+
+        a, button {
+          padding: 8px;
+          display: inline-block;
+          width: 230px;
+          color: #fff;
+          text-decoration: none;
+          border: 1px solid #141517;
+
+          &:hover {
+            background: #2b2e31;
+            border-color: #141517;
+          }
+        }
+      }
+    }
+  }
+
+}

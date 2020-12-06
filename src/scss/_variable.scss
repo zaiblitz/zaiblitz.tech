@@ -1,0 +1,20 @@
+
+// Colors
+$color-theme: #fff;
+$color-bg-header: #f3f6f8;
+$color-text: #383838;
+$color-text-header: #383838;
+
+// Font Family
+$ff-body: 'Nunito', sans-serif;
+$ff-heading: 'Nunito', sans-serif;
+
+// Layouts
+$layout-dektop : 'only screen and (min-width: 1920px)';
+$layout-desktop-xs: 'only screen and (min-width: 1600px) and (max-width: 1919px)';
+$layout-laptop : 'only screen and (min-width: 1200px) and (max-width: 1599px)';
+$layout-notebook: 'only screen and (min-width: 992px) and (max-width: 1199px)';
+$layout-tablet : 'only screen and (min-width: 768px) and (max-width: 991px)';
+$layout-mobile-lg : 'only screen and (max-width: 767px)';
+$layout-mobile-sm : 'only screen and (max-width: 575px)';
+$layout-mobile-xs : 'only screen and (max-width: 480px)';
